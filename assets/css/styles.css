@@ -399,6 +399,7 @@ section {
 
     .box .img.video iframe {
         border-top-left-radius: 12px;
+        border-top-right-radius: 0;
     }
 
     .box .img.video img {
@@ -408,6 +409,12 @@ section {
 
     .section_01 .box .img {
         height: 183px !important;
+    }
+
+    .section_01 .box .img.video {
+        background: #000;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
     }
 
     .section_02 {
