@@ -78,16 +78,6 @@ $(document).ready(function () {
     },
   });
 
-  // mainSwiper02
-  var mainSwiper02 = new Swiper(".mainSwiper02", {
-    slidesPerView: 2.3,
-    spaceBetween: 20, // 슬라이드 여백
-    centeredSlides: false, // 슬라이드 중앙정렬
-    slidesOffsetBefore: 20, // 슬라이드 오른쪽 여백
-    slidesOffsetAfter: 20, // 슬라이드 오른쪽 여백
-    loop: false, // 무한반복
-  });
-
   // mainSwiper03
   var mainSwiper03 = new Swiper(".mainSwiper03", {
     slidesPerView: 1.2,
@@ -158,8 +148,76 @@ $(document).ready(function () {
     spaceBetween: 16, // 슬라이드 여백
     centeredSlides: false, // 슬라이드 중앙정렬
     loop: false, // 무한반복
+    slidesOffsetBefore: 20, // 슬라이드 오른쪽 여백
+    slidesOffsetAfter: 20, // 슬라이드 오른쪽 여백
     autoplay: {
       delay: 2000,
     },
   });
+
+  // 초기 탭 설정
+  $(".tab_nav_item:first").addClass("active");
+  $(".tab_pane:first").addClass("active");
+
+  // 탭 클릭 이벤트 처리
+  $(".tab_nav_item").click(function () {
+    $(".tab_nav_item").removeClass("active");
+    $(this).addClass("active");
+
+    var tabIndex = $(this).index();
+    $(".tab_pane").removeClass("active");
+    $(".tab_pane:eq(" + tabIndex + ")").addClass("active");
+  });
+
+  // 초기 중첩된 탭 설정
+  $(".nested_tab_nav_item:first").addClass("active");
+  $(".nested_tab_pane:first").addClass("active");
+
+  // 중첩된 탭 클릭 이벤트 처리
+  $(".nested_tab_nav_item").click(function () {
+    $(".nested_tab_nav_item").removeClass("active");
+    $(this).addClass("active");
+
+    var nestedTabIndex = $(this).index();
+    $(".nested_tab_pane").removeClass("active");
+    $(".nested_tab_pane:eq(" + nestedTabIndex + ")").addClass("active");
+  });
+
+  // 아코디언
+  $(".accordion_title").click(function () {
+    $(".accordion_content").slideUp();
+    $(this).parent().toggleClass("active");
+    $(".accordion_item").not($(this).parent()).removeClass("active");
+    $(this).next(".accordion_content").slideToggle();
+  });
+
+  // 지역선택
+  $("#region").click(function () {
+    $(".region_wrap").toggle();
+  });
+
+  // 분류선택
+  $("#selectCategory").click(function () {
+    $(".select_category_wrap").toggle();
+  });
+
+  $(".category li").click(function () {
+    $(this).toggleClass("active");
+  });
+
+  // prev 버튼 클릭 시
+  $(".prev").on("click", function () {
+    $(".category").animate({ scrollLeft: "-=100px" }, "slow");
+  });
+
+  // next 버튼 클릭 시
+  $(".next").on("click", function () {
+    $(".category").animate({ scrollLeft: "+=100px" }, "slow");
+  });
+
+  // category_all 버튼 클릭 시
+  $(".category_all").on("click", function () {
+    $(".select_category_wrap").slideToggle("slow");
+  });
+
 });
