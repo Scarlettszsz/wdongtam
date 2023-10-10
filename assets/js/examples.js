@@ -65,7 +65,6 @@ $(document).ready(function () {
   // 일정 간격으로 addItem 함수 호출 (예: 3초마다)
   setInterval(pcAddItem, 3000);
 
-  
   var detail_img_01 = new Swiper(".detail_img_01", {
     spaceBetween: 10,
     slidesPerView: 4,
@@ -159,9 +158,9 @@ $(document).ready(function () {
     $(".region_wrap").toggle();
   });
 
-  $(".region_wrap ul li").click(function() {
+  $(".region_wrap ul li").click(function () {
     $(this).toggleClass("active");
-  })
+  });
 
   // 분류선택
   $("#selectCategory").click(function () {
@@ -187,4 +186,60 @@ $(document).ready(function () {
     $(".select_category_wrap").slideToggle("slow");
   });
 
+  // 모달 열기 버튼 클릭 이벤트
+  $(".open_modal").click(function () {
+    var modalId = $(this).data("modal-id");
+    $("#" + modalId).css("display", "flex");
+  });
+
+  // 모달 닫기 버튼 및 모달 바깥 영역 클릭 이벤트
+  $(".close, .modal_wrap").click(function () {
+    $(".modal_wrap").css("display", "none");
+  });
+
+  // 모달 내부 클릭 시 닫기 방지
+  $(".modal_content").click(function (e) {
+    e.stopPropagation();
+  });
+
+  // 커스텀 select box 열기/닫기 이벤트
+  $(".custom_select").click(function () {
+    var $options = $(this).find(".options");
+    $options.toggleClass("open");
+  });
+
+  // 옵션 선택 이벤트
+  $(".options li").click(function () {
+    var selectedValue = $(this).data("value");
+    var selectedText = $(this).text();
+    var $customSelect = $(this).closest(".custom_select");
+    $customSelect.find(".selected_option").text(selectedText);
+    $customSelect.find(".options").removeClass("open");
+  });
+
+  // 커스텀 select box 외부 클릭 시 닫기
+  $(document).click(function (e) {
+    if (!$(e.target).closest(".custom_select").length) {
+      $(".options").removeClass("open");
+    }
+  });
+
+  // 파일 선택
+  $("#fileButton").click(function () {
+    $("#fileInput").click();
+  });
+
+  // 파일 선택 이벤트 처리
+  $("#fileInput").change(function () {
+    var selectedFile = this.files[0];
+    if (selectedFile) {
+      // 파일 선택 후 처리할 로직을 여기에 추가
+      $("#fileNameInput").val(selectedFile.name);
+    }
+  });
+
+  // 뒤로가기
+  $(".back_button").click(function () {
+    window.history.back();
+  });
 });
