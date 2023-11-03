@@ -1705,6 +1705,10 @@ section {
     font-weight: 600;
 }
 
+.con_top h3 span {
+    color: #F8350A;
+}
+
 .con_top ul {
     align-items: center;
     display: flex;
@@ -1826,10 +1830,37 @@ section {
     border-bottom: 0;
 }
 
+.writing_list .badge_group {
+    display: flex;
+    gap: 4px;
+    margin: 0 0 12px 0;
+}
+
+.writing_list .badge_group span {
+    border-radius: 4px;
+    color: #333;
+    font-size: 12px;
+    padding: 0px 8px;
+}
+
+.writing_list .badge_group span.orange {
+    background: #F8350A;
+    color: #fff;
+}
+
+.writing_list .badge_group span.gray {
+    background: #f1f1f1;
+}
+
 .writing_list h1 {
     color: #333;
     font-size: 16px;
     font-weight: 500;
+}
+
+.writing_list h1 span {
+    color: #F8350A;
+    margin: 0 4px 0 0;
 }
 
 .writing_list p {
